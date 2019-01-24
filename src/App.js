@@ -5,15 +5,16 @@ import Body from './components/Body';
 
 class App extends React.Component {
     state={
-        signedIn: 0
+        signedIn:  window.localStorage.getItem('access_token')
     }
     changeState = (flag)=>{
+        window.localStorage.setItem('access_token',flag);
         this.setState({signedIn:flag});
     }
     render(){
         return (
             <div>
-                <Header signedIn={this.state.signedIn} />
+                <Header signedIn={this.state.signedIn} signIn={this.changeState}/>
                 <Body signedIn={this.state.signedIn} signIn={this.changeState}/>
             </div>
         );
