@@ -1,31 +1,17 @@
 import React from 'react';
-import { Line } from 'react-chartjs-2';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis ,Tooltip } from 'recharts';
 
 class Chart extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-          chartData:props.chartData
-        }
-    }
-    static defaultProps = {
-        displayTitle:true,
-        displayLegend: true,
-        legendPosition:'right'
-    }
-
     render(){
-        return (
-            <Line
-              data={this.state.chartData}
-              options={{
-                title:{
-                    display:this.props.displayTitle,
-                    text:'Timeline ',
-                    fontSize:25
-                }
-              }}
-            />
+        console.log(this.props.chartData);
+        return(
+            <LineChart width={700} height={400} data={this.props.chartData} margin={{ top: 35, right: 20, bottom: 5, left: 0 }}>
+                <Line type="monotone" dataKey="numberOfParts" stroke="#8884d8" />
+                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                <XAxis dataKey="time" />
+                <YAxis />
+                <Tooltip />
+            </LineChart>
         );
     }
 }
